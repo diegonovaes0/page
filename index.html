@@ -1,0 +1,3789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud & Dev Portfolio | 2025</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black-absolute: #000000;
+            --black-rich: #030303;
+            --black-elegant: #0A0A0A;
+            --black-pearl: #121212;
+            --black-smoke: #1A1A1A;
+            --gray-dark: #2A2A2A;
+            --gray-medium: #3A3A3A;
+            --gray-light: #5A5A5A;
+            --accent-gold: #FFD600;
+            --accent-gold-muted: rgba(255, 214, 0, 0.7);
+            --accent-gold-hover: #FFE033;
+            --accent-blue: #0066FF;
+            --accent-green: #00CC99;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --submenu-hover: rgba(255, 214, 0, 0.05);
+            --menu-hover: rgba(255, 214, 0, 0.1);
+            --submenu-level-1: #2A2A2A;
+            --submenu-level-2: #242424;
+            --submenu-level-3: #1E1E1E;
+            --transition: all 0.3s ease;
+            --terminal-bg: #0D1117;
+            --terminal-text: #E5E9F0;
+            --terminal-prompt: #88C0D0;
+            --terminal-success: #A3BE8C;
+            --terminal-error: #BF616A;
+            --terminal-warning: #EBCB8B;
+            --terminal-command: #B48EAD;
+            --python-blue: #306998;
+            --python-yellow: #FFE873;
+            --terraform-purple: #7B42BC;
+            --aws-orange: #FF9900;
+            --docker-blue: #2496ED;
+            --kubernetes-blue: #326CE5;
+            --ansible-red: #EE0000;
+        }
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+    }
+    body {
+    background-color: var(--black-pearl);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    overflow-y: hidden; /* Inicialmente bloqueado para o loader */
+}
+
+.container {
+    width: 100%;
+    max-width: 1600px; /* Aumentado para ficar mais largo */
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* Loader - Infraestrutura em Construção */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-absolute);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: 500px;
+}
+
+/* Visual de Engrenagens */
+.infrastructure-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.gear {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold-muted);
+    opacity: 0;
+    transform: rotate(0deg) translateZ(0);
+    transition: opacity 1s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: radial-gradient(circle at 30% 30%, rgba(255, 214, 0, 0.1), transparent);
+}
+
+.gear-lg {
+    width: 120px;
+    height: 120px;
+    font-size: 3.5rem;
+    animation: rotateGear 20s linear infinite;
+}
+
+.gear-md {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+    animation: rotateGearReverse 15s linear infinite;
+}
+
+.gear-sm {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    animation: rotateGear 10s linear infinite;
+}
+
+@keyframes rotateGear {
+    from { transform: rotate(0deg) translateZ(0); }
+    to { transform: rotate(360deg) translateZ(0); }
+}
+
+@keyframes rotateGearReverse {
+    from { transform: rotate(0deg) translateZ(0); }
+    to { transform: rotate(-360deg) translateZ(0); }
+}
+
+.infra-element {
+    position: absolute;
+    background-color: var(--submenu-level-1);
+    border-radius: 6px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    z-index: 2;
+    transition: all 0.5s ease;
+    border-left: 3px solid var(--accent-gold);
+}
+
+.infra-element i {
+    font-size: 1.4rem;
+    color: var(--accent-gold);
+}
+
+.infra-element-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.infra-element-text strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.infra-path {
+    position: absolute;
+    background-color: var(--accent-gold);
+    height: 2px;
+    opacity: 0;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+.code-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.12;
+}
+
+.code-line {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-gold-muted);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    animation: codeDrift 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes codeDrift {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.loader-text {
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 40px;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.loader-text .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2rem;
+    background-color: var(--accent-gold);
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.loader-progress {
+    width: 400px;
+    height: 4px;
+    background-color: var(--submenu-level-2);
+    border-radius: 2px;
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-bar {
+    height: 100%;
+    background-color: var(--accent-gold);
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.3s ease-out;
+    position: relative;
+}
+
+.loader-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 10px;
+    background: linear-gradient(to right, transparent, var(--accent-gold));
+    animation: pulseBrightness 1s ease-in-out infinite;
+}
+
+@keyframes pulseBrightness {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid var(--accent-gold);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor.hover {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 214, 0, 0.1);
+    border: 1px solid var(--accent-gold);
+}
+
+/* Header */
+header {
+    background-color: var(--black-absolute);
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-right: 10px;
+}
+
+.logo span.tag {
+    font-family: 'JetBrains Mono', monospace;
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.logo span.tag:first-child {
+    margin-right: 5px;
+    animation: pulseLeft 3s infinite;
+}
+
+.logo span.tag:last-child {
+    margin-left: 5px;
+    animation: pulseRight 3s infinite;
+}
+
+@keyframes pulseLeft {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-3px); }
+}
+
+@keyframes pulseRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+    transform: scaleX(0.7);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 10px 18px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-gold);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::before {
+    width: 70%;
+}
+
+.nav-links a i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-gold);
+    background-color: var(--menu-hover);
+}
+
+.nav-links a:hover i {
+    transform: translateY(-3px);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--black-rich);
+    position: relative;
+    overflow: hidden;
+    padding-top: 90px;
+    padding-bottom: 50px;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--black-absolute) 0%, rgba(18, 18, 18, 0.8) 100%);
+    z-index: 1;
+}
+
+.hero-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.05;
+}
+
+.grid-line {
+    position: absolute;
+    background-color: var(--accent-gold);
+    opacity: 0.3;
+}
+
+.horizontal-line {
+    height: 1px;
+    width: 100%;
+}
+
+.vertical-line {
+    width: 1px;
+    height: 100%;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 650px;
+}
+
+.hero-visual {
+    flex: 1;
+    max-width: 650px;
+    height: 500px;
+    position: relative;
+}
+
+.cloud-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.cloud-icon {
+    background-color: rgba(26, 26, 26, 0.7);
+    border-radius: 8px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transform: translateY(20px) translateZ(0);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    /* Efeito 3D mais sofisticado */
+    transform-style: preserve-3d;
+    perspective: 800px;
+}
+
+.cloud-icon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.cloud-icon::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    width: 20px;
+    background-color: var(--accent-gold);
+    transition: width 0.3s ease;
+}
+
+.cloud-icon .icon-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 214, 0, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cloud-icon .icon-inner {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.cloud-icon:hover {
+    transform: translateY(-10px) rotateX(10deg) rotateY(-10deg) translateZ(0);
+    box-shadow: 
+        10px 10px 20px rgba(0, 0, 0, 0.4),
+        inset 0 0 15px rgba(255, 214, 0, 0.1);
+    background-color: rgba(42, 42, 42, 0.9);
+}
+
+.cloud-icon:hover .icon-background {
+    opacity: 1;
+}
+
+.cloud-icon:hover .icon-inner {
+    transform: translateZ(10px);
+}
+
+.cloud-icon:hover::before {
+    transform: translateX(100%);
+}
+
+.cloud-icon:hover::after {
+    width: 40px;
+}
+
+.cloud-icon-tooltip {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--black-absolute);
+    color: var(--text-primary);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.cloud-icon:hover .cloud-icon-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: -30px;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    margin-bottom: 25px;
+    line-height: 1.1;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 0.5s;
+    position: relative;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1::before {
+    content: '< ';
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-gold);
+    opacity: 0.5;
+    font-weight: 400;
+    font-size: 0.8em;
+    position: absolute;
+    left: -40px;
+    top: 0;
+}
+
+.hero h1::after {
+    content: ' />';
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-gold);
+    opacity: 0.5;
+    font-weight: 400;
+    font-size: 0.8em;
+    position: absolute;
+    right: -60px;
+    bottom: 0;
+}
+
+.hero h1 span {
+    color: var(--accent-gold);
+    position: relative;
+    display: inline-block;
+}
+
+.hero h1 span::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-gold);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease;
+}
+
+.hero h1 span.animate::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 0.8s;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 1.1s;
+}
+
+.btn {
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: var(--transition);
+    cursor: pointer;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background-color: var(--accent-gold);
+    color: var(--black-absolute);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-gold-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-gold);
+}
+
+.btn-secondary:hover {
+    background-color: var(--menu-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Terminal Styles */
+.terminal-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: var(--terminal-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 1.4s;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-header {
+    background-color: var(--submenu-level-3);
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-button {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.terminal-button:hover {
+    transform: scale(1.1);
+}
+
+.terminal-close {
+    background-color: #FF5F57;
+}
+
+.terminal-minimize {
+    background-color: #FEBC2E;
+}
+
+.terminal-maximize {
+    background-color: #28C841;
+}
+
+.terminal-tabs {
+    display: flex;
+    background-color: var(--submenu-level-2);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--submenu-level-3) var(--submenu-level-1);
+}
+
+.terminal-tabs::-webkit-scrollbar {
+    height: 6px;
+}
+
+.terminal-tabs::-webkit-scrollbar-track {
+    background: var(--submenu-level-1);
+}
+
+.terminal-tabs::-webkit-scrollbar-thumb {
+    background-color: var(--submenu-level-3);
+    border-radius: 6px;
+}
+
+.terminal-tab {
+    padding: 8px 15px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.terminal-tab.active {
+    background-color: var(--terminal-bg);
+    color: var(--terminal-text);
+}
+
+.terminal-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-gold);
+}
+
+.terminal-content {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--terminal-text);
+    line-height: 1.5;
+}
+
+.command-line {
+    display: flex;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.command-prompt {
+    color: var(--terminal-prompt);
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.command-text {
+    color: var(--terminal-text);
+    word-break: break-all;
+}
+
+.command-highlighted {
+    color: var(--terminal-command);
+    font-weight: bold;
+}
+
+.terraform-highlight {
+    color: var(--terraform-purple);
+    font-weight: bold;
+}
+
+.aws-highlight {
+    color: var(--aws-orange);
+    font-weight: bold;
+}
+
+.docker-highlight {
+    color: var(--docker-blue);
+    font-weight: bold;
+}
+
+.python-highlight {
+    color: var(--python-blue);
+    font-weight: bold;
+}
+
+.ansible-highlight {
+    color: var(--ansible-red);
+    font-weight: bold;
+}
+
+.command-output {
+    padding-left: 25px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.command-output-line {
+    margin-bottom: 5px;
+}
+
+.output-success {
+    color: var(--terminal-success);
+}
+
+.output-error {
+    color: var(--terminal-error);
+}
+
+
+.output-warning {
+        color: var(--terminal-warning);
+    }
+    .progress-container {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    background-color: var(--submenu-level-3);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--accent-gold);
+    border-radius: 4px;
+    transition: width 0.3s linear;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 20px;
+    background: linear-gradient(to right, transparent, var(--accent-gold));
+    filter: blur(3px);
+}
+
+.active-line {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.active-prompt {
+    color: var(--terminal-prompt);
+    margin-right: 10px;
+}
+
+.active-cursor {
+    width: 10px;
+    height: 18px;
+    background-color: var(--accent-gold-muted);
+    animation: blink 1s step-end infinite;
+    margin-left: 5px;
+}
+
+/* Seção de Transição */
+.section-transition {
+    position: relative;
+    height: 120px;
+    overflow: hidden;
+    background-color: var(--black-elegant);
+}
+
+.transition-content {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    z-index: 2;
+}
+
+.transition-code {
+    display: flex;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--accent-gold);
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.transition-code::before,
+.transition-code::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35%;
+    height: 1px;
+    background-color: var(--accent-gold-muted);
+}
+
+.transition-code::before {
+    left: 0;
+}
+
+.transition-code::after {
+    right: 0;
+}
+
+.typing-code {
+    overflow: hidden;
+    border-right: 2px solid var(--accent-gold);
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 8s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    0%, 100% { width: 0 }
+    50%, 70% { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent-gold) }
+}
+
+.transition-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-smoke);
+    z-index: 1;
+}
+
+.transition-layer::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: var(--black-elegant);
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.transition-layer::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: var(--black-smoke);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+}/* Você pode remover essas partes se quiser */
+.transition-particle {
+    display: none;
+}
+
+.transition-content {
+    display: none;
+}
+@keyframes floatParticle {
+    0% {
+        transform: translateY(120px) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-20px) translateX(30px);
+        opacity: 0;
+    }
+}
+
+/* Seção de Habilidades */
+.skills-section {
+    padding: 100px 0;
+    background-color: var(--black-smoke);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-gold);
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.skill-category {
+    background-color: var(--submenu-level-1);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.skill-category:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.skill-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--accent-gold), var(--accent-blue));
+}
+
+.skill-category-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+}
+
+.skill-category-title i {
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+}
+
+.skill-list {
+    list-style: none;
+}
+
+.skill-item {
+    margin-bottom: 20px;
+}
+
+.skill-name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.skill-bar {
+    height: 8px;
+    background-color: var(--submenu-level-3);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-progress {
+    height: 100%;
+    border-radius: 4px;
+    width: 0%;
+    transition: width 1.5s ease-in-out;
+    position: relative;
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 15px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2));
+}
+
+.cloud-skill .skill-progress {
+    background-color: var(--aws-orange);
+}
+
+.devops-skill .skill-progress {
+    background-color: var(--terraform-purple);
+}
+
+.coding-skill .skill-progress {
+    background-color: var(--python-blue);
+}
+
+.container-skill .skill-progress {
+    background-color: var(--docker-blue);
+}
+
+/* Seção de Certificações */
+.certifications-section {
+    padding: 100px 0;
+    background-color: var(--black-pearl);
+    position: relative;
+}
+
+.certifications-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.certification-card {
+    background-color: var(--submenu-level-1);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.certification-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.certification-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--accent-gold);
+}
+
+.certification-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: var(--black-pearl);
+}
+
+.certification-logo i {
+    font-size: 2.5rem;
+}
+
+.aws-cert i {
+    color: var(--aws-orange);
+}
+
+.azure-cert i {
+    color: var(--accent-blue);
+}
+
+.gcp-cert i {
+    color: var(--accent-gold);
+}
+
+.kubernetes-cert i {
+    color: var(--kubernetes-blue);
+}
+
+.certification-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.certification-issuer {
+    font-size: 0.9rem;
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+}
+
+.certification-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.certification-button {
+    margin-top: auto;
+    padding: 10px 15px;
+    border: none;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--gray-medium);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.certification-button:hover {
+    background-color: var(--accent-gold);
+    color: var(--black-absolute);
+    border-color: var(--accent-gold);
+}
+
+/* Seção de Projetos */
+.projects-section {
+    padding: 100px 0;
+    background-color: var(--black-elegant);
+    position: relative;
+}
+
+.projects-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    gap: 10px;
+}
+
+.filter-button {
+    padding: 8px 20px;
+    background-color: transparent;
+    border: 1px solid var(--gray-medium);
+    color: var(--text-secondary);
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover, .filter-button.active {
+    background-color: var(--accent-gold);
+    color: var(--black-absolute);
+    border-color: var(--accent-gold);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: var(--submenu-level-1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.project-image {
+    height: 200px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-link {
+    width: 45px;
+    height: 45px;
+    background-color: var(--accent-gold);
+    color: var(--black-absolute);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-link {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.project-link:hover {
+    background-color: var(--accent-gold-hover);
+    transform: translateY(-5px);
+}
+
+.project-content {
+    padding: 25px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.project-tag {
+    padding: 5px 10px;
+    background-color: var(--submenu-level-2);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.project-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.project-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.project-tech {
+    display: flex;
+    gap: 10px;
+}
+
+.project-tech-icon {
+    font-size: 1.2rem;
+    color: var(--accent-gold-muted);
+}
+
+/* Seção de Formação Acadêmica */
+.education-section {
+    padding: 100px 0;
+    background-color: var(--black-smoke);
+    position: relative;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: var(--gray-medium);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    padding: 30px 0;
+    width: 100%;
+    position: relative;
+}
+
+.timeline-content {
+    position: relative;
+    width: 45%;
+    margin-left: auto;
+    padding: 25px;
+    background-color: var(--submenu-level-1);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--accent-gold);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.timeline-date {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.timeline-item:nth-child(odd) .timeline-date {
+    right: 55%;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    left: 55%;
+    text-align: left;
+}
+
+.timeline-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.timeline-subtitle {
+    font-size: 1rem;
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+}
+
+.timeline-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Seção de Contato */
+.contact-section {
+    padding: 100px 0;
+    background-color: var(--black-rich);
+    position: relative;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.contact-info {
+    padding-right: 30px;
+}
+
+.contact-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.contact-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
+
+.contact-details {
+    list-style: none;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.contact-icon {
+    width: 45px;
+    height: 45px;
+    background-color: var(--submenu-level-1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+}
+
+.contact-text {
+    line-height: 1.6;
+}
+
+.contact-text strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.contact-text span {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.contact-social {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background-color: var(--submenu-level-1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: var(--accent-gold);
+    color: var(--black-absolute);
+    transform: translateY(-5px);
+}
+
+.contact-form {
+    background-color: var(--submenu-level-1);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--submenu-level-2);
+    border: 1px solid var(--gray-medium);
+    border-radius: 5px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--accent-gold);
+    outline: none;
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--accent-gold);
+    color: var(--black-absolute);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+    background-color: var(--accent-gold-hover);
+}
+
+/* Footer */
+.footer {
+    padding: 40px 0;
+    background-color: var(--black-absolute);
+    position: relative;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    text-decoration: none;
+}
+
+.footer-logo span {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.footer-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-gold);
+}
+
+/* Responsividade */
+@media screen and (max-width: 1300px) {
+    .hero-content {
+        flex-direction: column;
+        gap: 50px;
+    }
+    
+    .hero-text, .hero-visual {
+        max-width: 800px;
+        width: 100%;
+    }
+    
+    .hero-visual {
+        height: 400px;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .contact-info {
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .cloud-icons {
+        justify-content: center;
+    }
+    
+    .hero h1::before, 
+    .hero h1::after {
+        display: none;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 60px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 60px;
+        margin-right: 0;
+    }
+    
+    .timeline-dot {
+        left: 30px;
+    }
+    
+    .timeline-date {
+        position: relative;
+        top: auto;
+        transform: none;
+        margin-bottom: 10px;
+        color: var(--accent-gold);
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-date {
+        right: auto;
+        left: auto;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--black-absolute);
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-links.show {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .nav-links.show li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-links.show a {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .hero-text {
+        text-align: center;
+    }
+    
+    .cloud-icons {
+        justify-content: center;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .cloud-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .hero-visual {
+        height: 300px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .projects-filter {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* E adicione estes estilos ao CSS */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--submenu-level-1);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    height: 80%;
+    max-height: 600px;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--gray-dark);
+    border: none;
+    border-radius: 50%;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.cert-image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.upload-button {
+    padding: 12px 24px;
+    background-color: var(--accent-gold);
+    color: var(--black-absolute);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cert-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+/* Remova a linha de cor do skill-category */
+.skill-category::before {
+    display: none; /* Isso remove a linha colorida */
+}
+
+/* Adicione cores específicas para cada certificação */
+.certification-card.aws-cert::before {
+    background-color: var(--aws-orange);
+}
+
+.certification-card.azure-cert::before {
+    background-color: var(--accent-blue);
+}
+
+.certification-card.gcp-cert::before {
+    background-color: var(--accent-gold);
+}
+
+.certification-card.kubernetes-cert::before {
+    background-color: var(--kubernetes-blue);
+}
+
+.certification-card.terraform-cert::before {
+    background-color: var(--terraform-purple);
+}
+
+/* Se precisar adicionar mais cores para outras certificações */
+.certification-card.ansible-cert::before {
+    background-color: var(--ansible-red);
+}
+</style>
+<!-- Loader - Simulação de Infraestrutura em Construção -->
+<div class="loader" id="loader">
+    <div class="loader-content">
+        <!-- Engrenagens em movimento -->
+        <div class="infrastructure-grid" id="infrastructureGrid">
+            <div class="gear gear-lg" style="top: 30%; left: 25%;">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="gear gear-md" style="top: 40%; left: 40%;">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="gear gear-sm" style="top: 55%; left: 30%;">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="gear gear-sm" style="top: 55%; right: 30%;">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+        <div class="code-layer" id="codeLayer">
+            <!-- Linhas de código geradas por JS -->
+        </div>
+        
+        <!-- Infraestrutura simulada com elementos -->
+        <div class="infra-element" style="top: 35%; left: 50%; transform: translate(-50%, -50%) translateY(20px);">
+            <i class="fas fa-code"></i>
+            <div class="infra-element-text">
+                <strong>Infraestrutura como Código</strong>
+                Automatizando deployments com Terraform
+            </div>
+        </div>
+        
+        <div class="infra-element" style="top: 48%; left: 30%;">
+            <i class="fab fa-aws"></i>
+            <div class="infra-element-text">
+                <strong>AWS Cloud</strong>
+                EC2, Lambda, S3
+            </div>
+        </div>
+        
+        <div class="infra-element" style="top: 48%; left: 70%;">
+            <i class="fas fa-cogs"></i>
+            <div class="infra-element-text">
+                <strong>Configuração Automatizada</strong>
+                Gerenciamento consistente com Ansible
+            </div>
+        </div>
+        
+        <div class="infra-element" style="top: 65%; left: 50%; transform: translate(-50%, -50%) translateY(20px);">
+            <i class="fab fa-docker"></i>
+            <div class="infra-element-text">
+                <strong>Containerização</strong>
+                Docker & Kubernetes para orquestração
+            </div>
+        </div>
+        
+        <!-- Conexões entre elementos -->
+        <div class="infra-path" style="top: 42%; left: 35%; width: 15%; transform: rotate(0deg);"></div>
+        <div class="infra-path" style="top: 48%; left: 50%; width: 20%; transform: rotate(0deg);"></div>
+        <div class="infra-path" style="top: 52%; left: 30%; height: 13%; width: 2px; transform: rotate(0deg);"></div>
+        <div class="infra-path" style="top: 52%; left: 70%; height: 13%; width: 2px; transform: rotate(0deg);"></div>
+    </div>
+    
+    <div class="loader-text">
+        <span id="loaderTypeText">Inicializando infraestrutura como código</span>
+        <span class="cursor"></span>
+    </div>
+    
+    <div class="loader-progress">
+        <div class="loader-bar" id="loaderBar"></div>
+    </div>
+</div>
+
+<!-- Header -->
+<header>
+    <div class="container header-content">
+        <a href="#" class="logo">
+            <span class="tag">&lt;</span>CloudDev<span class="tag">/&gt;</span>
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home"><i class="fas fa-home"></i> Início</a></li>
+            <li><a href="#skills"><i class="fas fa-code"></i> Habilidades</a></li>
+            <li><a href="#certifications"><i class="fas fa-certificate"></i> Certificações</a></li>
+            <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projetos</a></li>
+            <li><a href="#education"><i class="fas fa-graduation-cap"></i> Formação</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> Contato</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- Hero Section (Banner) -->
+<section id="home" class="hero">
+    <!-- Grid de fundo -->
+    <div class="hero-grid" id="heroGrid">
+        <!-- Linhas horizontais e verticais geradas por JS -->
+    </div>
+    
+    <div class="container hero-content">
+        <div class="hero-text">
+            <div class="cloud-icons">
+                <div class="cloud-icon">
+                    <div class="icon-background"></div>
+                    <div class="icon-inner">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="cloud-icon-tooltip">Amazon Web Services</div>
+                </div>
+                <div class="cloud-icon">
+                    <div class="icon-background"></div>
+                    <div class="icon-inner">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="cloud-icon-tooltip">Google Cloud Platform</div>
+                </div>
+                <div class="cloud-icon">
+                    <div class="icon-background"></div>
+                    <div class="icon-inner">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="cloud-icon-tooltip">Microsoft Azure</div>
+                </div>
+                <div class="cloud-icon">
+                    <div class="icon-background"></div>
+                    <div class="icon-inner">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="cloud-icon-tooltip">Infraestrutura</div>
+                </div>
+                <div class="cloud-icon">
+                    <div class="icon-background"></div>
+                    <div class="icon-inner">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <div class="cloud-icon-tooltip">Docker & Kubernetes</div>
+                </div>
+                <div class="cloud-icon">
+                    <div class="icon-background"></div>
+                    <div class="icon-inner">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="cloud-icon-tooltip">CI/CD Pipeline</div>
+                </div>
+            </div>
+            
+            <h1>TRANSFORMANDO <span class="typing-text">INFRAESTRUTURA</span> EM <span>CÓDIGO</span></h1>
+            <p>Arquiteto de soluções em nuvem e desenvolvedor fullstack, criando a ponte entre infraestrutura robusta e aplicações eficientes. Automatizando o futuro, um deploy por vez.</p>
+            
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary"><i class="fas fa-project-diagram"></i> Ver Projetos</a>
+                <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope"></i> Fale Comigo</a>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <button class="terminal-button terminal-close"></button>
+                        <button class="terminal-button terminal-minimize"></button>
+                        <button class="terminal-button terminal-maximize"></button>
+                    </div>
+                    <div class="terminal-title">
+                        <i class="fas fa-terminal"></i> CloudDev Terminal
+                    </div>
+                    <div></div> <!-- Espaçador para centralizar o título -->
+                </div>
+                
+                <div class="terminal-tabs">
+                    <button class="terminal-tab active">terraform.tf</button>
+                    <button class="terminal-tab">deploy.sh</button>
+                    <button class="terminal-tab">ansible.yml</button>
+                    <button class="terminal-tab">docker-compose.yml</button>
+                    <button class="terminal-tab">app.py</button>
+                </div>
+                
+                <div class="terminal-content" id="terminalContent">
+                    <!-- Conteúdo do terminal gerado por JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Transição de Seção -->
+<div class="section-transition">
+    <div class="transition-layer"></div>
+    
+    <!-- Partículas de fundo -->
+    <div class="transition-particle" style="top: 30%; left: 20%;"></div>
+    <div class="transition-particle" style="top: 50%; left: 40%;"></div>
+    <div class="transition-particle" style="top: 70%; left: 10%;"></div>
+    <div class="transition-particle" style="top: 20%; left: 60%;"></div>
+    <div class="transition-particle" style="top: 80%; left: 70%;"></div>
+    <div class="transition-particle" style="top: 40%; left: 90%;"></div>
+    
+    <div class="transition-content">
+        <div class="transition-code">
+            <div class="typing-code">cd /projetos && python deploy_cloud_infrastructure.py --auto-scale</div>
+        </div>
+    </div>
+</div>
+
+<!-- Seção de Habilidades -->
+<section id="skills" class="skills-section">
+    <div class="container">
+        <h2 class="section-title">Habilidades Técnicas</h2>
+        
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3 class="skill-category-title">
+                    <i class="fab fa-aws"></i>
+                    Cloud Computing
+                </h3>
+                <ul class="skill-list">
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Amazon Web Services (AWS)</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress cloud-skill" data-progress="95"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Microsoft Azure</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress cloud-skill" data-progress="85"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Google Cloud Platform</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress cloud-skill" data-progress="80"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Serverless Computing</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress cloud-skill" data-progress="90"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h3 class="skill-category-title">
+                    <i class="fas fa-code-branch"></i>
+                    DevOps & IaC
+                </h3>
+                <ul class="skill-list">
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Terraform</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress devops-skill" data-progress="95"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Jenkins/GitLab CI</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress devops-skill" data-progress="90"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Ansible</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress devops-skill" data-progress="85"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>GitOps</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress devops-skill" data-progress="80"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h3 class="skill-category-title">
+                    <i class="fab fa-docker"></i>
+                    Containerização
+                </h3>
+                <ul class="skill-list">
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Docker</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress container-skill" data-progress="95"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Kubernetes</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress container-skill" data-progress="90"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Helm</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress container-skill" data-progress="85"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Istio/Service Mesh</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress container-skill" data-progress="75"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h3 class="skill-category-title">
+                    <i class="fas fa-code"></i>
+                    Desenvolvimento
+                </h3>
+                <ul class="skill-list">
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress coding-skill" data-progress="90"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript/Node.js</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress coding-skill" data-progress="85"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>Go</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress coding-skill" data-progress="75"></div>
+                        </div>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-name">
+                            <span>SQL/NoSQL</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress coding-skill" data-progress="90"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Certificações -->
+<section id="certifications" class="certifications-section">
+    <div class="container">
+        <h2 class="section-title">Certificações</h2>
+        
+        <div class="certifications-container">
+            <div class="certification-card">
+                <div class="certification-logo aws-cert">
+                    <i class="fab fa-aws"></i>
+                </div>
+                <h3 class="certification-title">AWS Certified Solutions Architect Professional</h3>
+                <div class="certification-issuer">Amazon Web Services</div>
+                <div class="certification-date">Obtida em Janeiro 2025 • Validade: 3 anos</div>
+                <a href="#" class="certification-button">
+                    <i class="fas fa-certificate"></i> Ver Credencial
+                </a>
+            </div>
+            
+            <div class="certification-card">
+                <div class="certification-logo aws-cert">
+                    <i class="fab fa-aws"></i>
+                </div>
+                <h3 class="certification-title">AWS Certified DevOps Engineer Professional</h3>
+                <div class="certification-issuer">Amazon Web Services</div>
+                <div class="certification-date">Obtida em Novembro 2024 • Validade: 3 anos</div>
+                <a href="#" class="certification-button">
+                    <i class="fas fa-certificate"></i> Ver Credencial
+                </a>
+            </div>
+            
+            <div class="certification-card">
+                <div class="certification-logo azure-cert">
+                    <i class="fab fa-microsoft"></i>
+                </div>
+                <h3 class="certification-title">Microsoft Certified: Azure Solutions Architect Expert</h3>
+                <div class="certification-issuer">Microsoft</div>
+                <div class="certification-date">Obtida em Agosto 2024 • Validade: 2 anos</div>
+                <a href="#" class="certification-button">
+                    <i class="fas fa-certificate"></i> Ver Credencial
+                </a>
+            </div>
+            
+            <div class="certification-card">
+                <div class="certification-logo gcp-cert">
+                    <i class="fab fa-google"></i>
+                </div>
+                <h3 class="certification-title">Google Professional Cloud Architect</h3>
+                <div class="certification-issuer">Google Cloud</div>
+                <div class="certification-date">Obtida em Abril 2024 • Validade: 2 anos</div>
+                <a href="#" class="certification-button">
+                    <i class="fas fa-certificate"></i> Ver Credencial
+                </a>
+            </div>
+            
+            <div class="certification-card">
+                <div class="certification-logo kubernetes-cert">
+                    <i class="fas fa-dharmachakra"></i>
+                </div>
+                <h3 class="certification-title">Certified Kubernetes Administrator (CKA)</h3>
+                <div class="certification-issuer">Cloud Native Computing Foundation</div>
+                <div class="certification-date">Obtida em Fevereiro 2024 • Validade: 3 anos</div>
+                <a href="#" class="certification-button">
+                    <i class="fas fa-certificate"></i> Ver Credencial
+                </a>
+            </div>
+            
+            <div class="certification-card">
+                <div class="certification-logo">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h3 class="certification-title">HashiCorp Certified: Terraform Associate</h3>
+                <div class="certification-issuer">HashiCorp</div>
+                <div class="certification-date">Obtida em Outubro 2023 • Validade: 2 anos</div>
+                <a href="#" class="certification-button">
+                    <i class="fas fa-certificate"></i> Ver Credencial
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Transição de Seção -->
+<div class="section-transition">
+    <div class="transition-layer"></div>
+    
+    <!-- Partículas de fundo -->
+    <div class="transition-particle" style="top: 30%; left: 20%;"></div>
+    <div class="transition-particle" style="top: 50%; left: 40%;"></div>
+    <div class="transition-particle" style="top: 70%; left: 10%;"></div>
+    <div class="transition-particle" style="top: 20%; left: 60%;"></div>
+    <div class="transition-particle" style="top: 80%; left: 70%;"></div>
+    <div class="transition-particle" style="top: 40%; left: 90%;"></div>
+    
+    <div class="transition-content">
+        <div class="transition-code">
+            <div class="typing-code">docker run --name cloud-app -d -p 80:80 --restart always my-cloud-app:latest</div>
+        </div>
+    </div>
+</div>
+
+<!-- Seção de Projetos -->
+<section id="projects" class="projects-section">
+    <div class="container">
+        <h2 class="section-title">Projetos Realizados</h2>
+        
+        <div class="projects-filter">
+            <button class="filter-button active" data-filter="all">Todos</button>
+            <button class="filter-button" data-filter="aws">AWS</button>
+            <button class="filter-button" data-filter="devops">DevOps</button>
+            <button class="filter-button" data-filter="kubernetes">Kubernetes</button>
+            <button class="filter-button" data-filter="fullstack">Full-Stack</button>
+        </div>
+        
+        <div class="projects-grid">
+            <div class="project-card" data-category="aws devops">
+                <div class="project-image">
+                    <img src="/api/placeholder/400/250" alt="Infraestrutura Multi-Conta AWS">
+                    <div class="project-overlay">
+                        <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">AWS</span>
+                        <span class="project-tag">Terraform</span>
+                        <span class="project-tag">IaC</span>
+                    </div>
+                    <h3 class="project-title">Infraestrutura Multi-Conta AWS</h3>
+                    <p class="project-description">
+                        Implementação de arquitetura AWS Landing Zone com múltiplas contas para ambientes de desenvolvimento, homologação e produção com Terraform.
+                    </p>
+                    <div class="project-tech">
+                        <i class="fab fa-aws project-tech-icon"></i>
+                        <i class="fas fa-code-branch project-tech-icon"></i>
+                        <i class="fas fa-lock project-tech-icon"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="kubernetes devops">
+                <div class="project-image">
+                    <img src="/api/placeholder/400/250" alt="Plataforma de Microsserviços">
+                    <div class="project-overlay">
+                        <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Kubernetes</span>
+                        <span class="project-tag">Istio</span>
+                        <span class="project-tag">GitOps</span>
+                    </div>
+                    <h3 class="project-title">Plataforma de Microsserviços</h3>
+                    <p class="project-description">
+                        Plataforma escalável de microsserviços com Service Mesh (Istio), monitoramento e CI/CD automatizado utilizando ArgoCD e GitOps.
+                    </p>
+                    <div class="project-tech">
+                        <i class="fas fa-dharmachakra project-tech-icon"></i>
+                        <i class="fas fa-network-wired project-tech-icon"></i>
+                        <i class="fas fa-tachometer-alt project-tech-icon"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="fullstack aws">
+                <div class="project-image">
+                    <img src="/api/placeholder/400/250" alt="Aplicação Serverless">
+                    <div class="project-overlay">
+                        <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Serverless</span>
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Lambda</span>
+                    </div>
+                    <h3 class="project-title">Aplicação Serverless</h3>
+                    <p class="project-description">
+                        Portal de gerenciamento de eventos com frontend React e backend serverless utilizando AWS Lambda, API Gateway e DynamoDB.
+                    </p>
+                    <div class="project-tech">
+                        <i class="fab fa-react project-tech-icon"></i>
+                        <i class="fab fa-aws project-tech-icon"></i>
+                        <i class="fas fa-database project-tech-icon"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="devops">
+                <div class="project-image">
+                    <img src="/api/placeholder/400/250" alt="Pipeline CI/CD">
+                    <div class="project-overlay">
+                        <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">CI/CD</span>
+                        <span class="project-tag">GitLab</span>
+                        <span class="project-tag">Docker</span>
+                    </div>
+                    <h3 class="project-title">Pipeline CI/CD Avançada</h3>
+                    <p class="project-description">
+                        Implementação de pipeline completa com testes automatizados, análise de segurança e deployment com GitLab CI e integração com SonarQube.
+                    </p>
+                    <div class="project-tech">
+                        <i class="fab fa-gitlab project-tech-icon"></i>
+                        <i class="fab fa-docker project-tech-icon"></i>
+                        <i class="fas fa-shield-alt project-tech-icon"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="kubernetes aws">
+                <div class="project-image">
+                    <img src="/api/placeholder/400/250" alt="Cluster Kubernetes">
+                    <div class="project-overlay">
+                        <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">EKS</span>
+                        <span class="project-tag">Karpenter</span>
+                        <span class="project-tag">Terraform</span>
+                    </div>
+                    <h3 class="project-title">Cluster Kubernetes Auto-escalável</h3>
+                    <p class="project-description">
+                        Implementação de cluster EKS com auto-scaling inteligente utilizando Karpenter e otimização de custo com Spot Instances.
+                    </p>
+                    <div class="project-tech">
+                        <i class="fas fa-dharmachakra project-tech-icon"></i>
+                        <i class="fab fa-aws project-tech-icon"></i>
+                        <i class="fas fa-coins project-tech-icon"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" data-category="fullstack">
+                <div class="project-image">
+                    <img src="/api/placeholder/400/250" alt="Plataforma IoT">
+                    <div class="project-overlay">
+                        <a href="#" class="project-link"><i class="fas fa-link"></i></a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">IoT</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">MQTT</span>
+                    </div>
+                    <h3 class="project-title">Plataforma IoT Cloud</h3>
+                    <p class="project-description">
+                        Sistema de monitoramento IoT com dashboard em tempo real, processamento de eventos complexos e análise de dados com Python e Kafka.
+                    </p>
+                    <div class="project-tech">
+                        <i class="fab fa-python project-tech-icon"></i>
+                        <i class="fas fa-microchip project-tech-icon"></i>
+                        <i class="fas fa-chart-line project-tech-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Transição de Seção -->
+<div class="section-transition">
+    <div class="transition-layer"></div>
+    
+    <!-- Partículas de fundo -->
+    <div class="transition-particle" style="top: 30%; left: 20%;"></div>
+    <div class="transition-particle" style="top: 50%; left: 40%;"></div>
+    <div class="transition-particle" style="top: 70%; left: 10%;"></div>
+    <div class="transition-particle" style="top: 20%; left: 60%;"></div>
+    <div class="transition-particle" style="top: 80%; left: 70%;"></div>
+    <div class="transition-particle" style="top: 40%; left: 90%;"></div>
+    
+    <div class="transition-content">
+        <div class="transition-code">
+            <div class="typing-code">terraform apply -auto-approve && ansible-playbook -i inventory.yml deploy.yml</div>
+        </div>
+    </div>
+</div>
+
+<!-- Seção de Formação -->
+<section id="education" class="education-section">
+    <div class="container">
+        <h2 class="section-title">Formação Acadêmica</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2022 - 2024</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">MBA em Arquitetura de Soluções Cloud</h3>
+                    <h4 class="timeline-subtitle">Instituto de Tecnologia Avançada</h4>
+                    <p class="timeline-text">
+                        Especialização em arquiteturas de nuvem híbrida, multi-cloud e práticas avançadas de governança e segurança. Projeto final focado em migração de workloads para AWS com otimização de custos.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2018 - 2021</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Bacharel em Engenharia de Software</h3>
+                    <h4 class="timeline-subtitle">Universidade Federal de Tecnologia</h4>
+                    <p class="timeline-text">
+                        Formação com ênfase em desenvolvimento de sistemas distribuídos, DevOps e metodologias ágeis. Participação em projetos de extensão na área de computação em nuvem.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Especialização em Kubernetes e Cloud Native</h3>
+                    <h4 class="timeline-subtitle">Cloud Academy</h4>
+                    <p class="timeline-text">
+                        Curso intensivo de 6 meses com foco em arquiteturas cloud-native, padrões de design para microsserviços e orquestração avançada com Kubernetes.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2022</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Programa de Residência em AWS</h3>
+                    <h4 class="timeline-subtitle">Amazon Web Services</h4>
+                    <p class="timeline-text">
+                        Programa imersivo de 3 meses para aprofundamento em tecnologias AWS avançadas, com mentoria direta de arquitetos AWS e implementação de soluções para casos reais.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Contato -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2 class="section-title">Entre em Contato</h2>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 class="contact-title">Vamos Conversar</h3>
+                <p class="contact-subtitle">
+                    Estou sempre em busca de novos desafios e oportunidades de colaboração em projetos inovadores. Se você tem um projeto interessante ou quer discutir como posso ajudar a escalar sua infraestrutura cloud, entre em contato!
+                </p>
+                
+                <ul class="contact-details">
+                    <li class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Email</strong>
+                            <span>contato@seunome.com.br</span>
+                        </div>
+                    </li>
+                    <li class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Telefone</strong>
+                            <span>+55 11 98765-4321</span>
+                        </div>
+                    </li>
+                    <li class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Localização</strong>
+                            <span>São Paulo, SP - Brasil</span>
+                            <span>Disponível para trabalho remoto e internacional</span>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="contact-social">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Assunto</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">Mensagem</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer-content">
+        <a href="#" class="footer-logo">
+            <span>&lt;</span>CloudDev<span>/&gt;</span>
+        </a>
+        
+        <p class="footer-text">
+            &copy; 2025 - Todos os direitos reservados
+        </p>
+        
+        <div class="footer-links">
+            <a href="#" class="footer-link">Termos de Uso</a>
+            <a href="#" class="footer-link">Política de Privacidade</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Função para criar grid de fundo no hero
+    function setupHeroGrid() {
+        const heroGrid = document.getElementById('heroGrid');
+        if (!heroGrid) return;
+        
+        // Limpar grid primeiro
+        heroGrid.innerHTML = '';
+        
+        // Criar linhas horizontais
+        for (let i = 0; i < 10; i++) {
+            const line = document.createElement('div');
+            line.className = 'grid-line horizontal-line';
+            line.style.top = `${i * 10}%`;
+            heroGrid.appendChild(line);
+        }
+        
+        // Criar linhas verticais
+        for (let i = 0; i < 10; i++) {
+            const line = document.createElement('div');
+            line.className = 'grid-line vertical-line';
+            line.style.left = `${i * 10}%`;
+            heroGrid.appendChild(line);
+        }
+    }
+    
+    // Função para criar código no loader
+    function setupCodeLayer() {
+        const codeLayer = document.getElementById('codeLayer');
+        if (!codeLayer) return;
+        
+        const codeSnippets = [
+            // Terraform
+            'resource "aws_instance" "web" {',
+            '  ami           = "ami-0c55b159cbfafe1f0"',
+            '  instance_type = "t2.micro"',
+            '  tags = {',
+            '    Name = "WebServer"',
+            '  }',
+            '}',
+            
+            // Docker
+            'FROM python:3.9-slim',
+            'WORKDIR /app',
+            'COPY requirements.txt .',
+            'RUN pip install -r requirements.txt',
+            'COPY . .',
+            'CMD ["python", "app.py"]',
+            
+            // Kubernetes
+            'apiVersion: apps/v1',
+            'kind: Deployment',
+            'metadata:',
+            '  name: app-deployment',
+            'spec:',
+            '  replicas: 3',
+            '  selector:',
+            '    matchLabels:',
+            '      app: web',
+            
+            // Python
+            'def deploy_infrastructure():',
+            '    print("Initializing infrastructure...")',
+            '    setup_vpc()',
+            '    launch_instances()',
+            '    return True',
+            
+            // Ansible
+            '- name: Configure web servers',
+            '  hosts: webservers',
+            '  become: yes',
+            '  tasks:',
+            '    - name: Install nginx',
+            '      apt:',
+            '        name: nginx',
+            '        state: present'
+        ];
+        
+        // Criar linhas de código
+        for (let i = 0; i < 15; i++) {
+            const line = document.createElement('div');
+            line.className = 'code-line';
+            line.style.top = `${i * 7}%`;
+            line.style.animationDelay = `${i * 0.2}s`;
+            
+            // Atribuir um snippet correspondente a um dos ícones
+            const snippetIndex = Math.floor(i % codeSnippets.length);
+            line.textContent = codeSnippets[snippetIndex];
+            
+            setTimeout(() => {
+                line.style.opacity = '1';
+            }, i * 300);
+            
+            codeLayer.appendChild(line);
+        }
+    }
+    
+    // Animar elementos de infraestrutura no loader
+    function animateInfraElements() {
+        const elements = document.querySelectorAll('.loader .infra-element');
+        const paths = document.querySelectorAll('.loader .infra-path');
+        const gears = document.querySelectorAll('.gear');
+        
+        gears.forEach((gear, index) => {
+            setTimeout(() => {
+                gear.style.opacity = '1';
+            }, 500 + (index * 200));
+        });
+        
+        elements.forEach((element, index) => {
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, 2000 + (index * 300));
+        });
+        
+        setTimeout(() => {
+            paths.forEach((path, index) => {
+                setTimeout(() => {
+                    path.style.opacity = '0.4';
+                }, index * 200);
+            });
+        }, 3500);
+    }
+    
+    // Animar texto do loader
+    function animateLoaderText() {
+        const loaderTypeText = document.getElementById('loaderTypeText');
+        if (!loaderTypeText) return;
+        
+        const texts = [
+            'Inicializando infraestrutura como código',
+            'Provisionando recursos cloud',
+            'Configurando rede segura',
+            'Orquestrando containers',
+            'Estabelecendo pipelines CI/CD',
+            'Aplicando boas práticas DevOps',
+            'Finalizando preparação'
+        ];
+        
+        let currentIndex = 0;
+        
+        const textInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % texts.length;
+            
+            // Animar código correspondente com o texto
+            const codeLines = document.querySelectorAll('.code-line');
+            if (codeLines.length > 0) {
+                codeLines.forEach((line, index) => {
+                    if (index % texts.length === currentIndex) {
+                        line.style.color = 'var(--accent-gold)';
+                        setTimeout(() => {
+                            line.style.color = 'var(--accent-gold-muted)';
+                        }, 800);
+                    }
+                });
+            }
+            
+            loaderTypeText.textContent = texts[currentIndex];
+            
+            if (currentIndex === texts.length - 1) {
+                clearInterval(textInterval);
+            }
+        }, 1500);
+    }
+    
+    // Progress bar do loader
+    function updateLoaderProgress() {
+        const loaderBar = document.getElementById('loaderBar');
+        if (!loaderBar) return;
+        
+        let progress = 0;
+        
+        const interval = setInterval(() => {
+            progress += 1;
+            loaderBar.style.width = `${progress}%`;
+            
+            if (progress >= 100) {
+                clearInterval(interval);
+                
+                setTimeout(() => {
+                    const loader = document.getElementById('loader');
+                    loader.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        
+                        // Iniciar animações do banner
+                        initBannerAnimations();
+                    }, 500);
+                }, 500);
+            }
+        }, 40);
+    }
+    
+    // Configurar o terminal interativo
+    function setupTerminal() {
+        const terminalContent = document.getElementById('terminalContent');
+        if (!terminalContent) return;
+        
+        // Definir comandos e outputs
+        const terminalSequence = [
+            {
+                type: 'command',
+                prompt: 'clouddev@server:~$',
+                text: 'terraform init',
+                delay: 500,
+                highlightClass: 'terraform-highlight'
+            },
+            {
+                type: 'output',
+                text: [
+                    'Initializing the backend...',
+                    'Initializing provider plugins...',
+                    '- Finding latest version of hashicorp/aws...',
+                    '- Installing hashicorp/aws v4.67.0...',
+                    '- Installed hashicorp/aws v4.67.0',
+                    '',
+                    'Terraform has been successfully initialized!'
+                ],
+                delay: 1500,
+                class: 'output-success'
+            },
+            {
+                type: 'command',
+                prompt: 'clouddev@server:~$',
+                text: 'terraform validate',
+                delay: 3000,
+                highlightClass: 'terraform-highlight'
+            },
+            {
+                type: 'output',
+                text: [
+                    'Success! The configuration is valid.'
+                ],
+                delay: 1000,
+                class: 'output-success'
+            },
+            {
+                type: 'command',
+                prompt: 'clouddev@server:~$',
+                text: 'terraform plan -out=tfplan',
+                delay: 2000,
+                highlightClass: 'terraform-highlight'
+            },
+            {
+                type: 'output',
+                text: [
+                    'Terraform used the selected providers to generate the following execution plan.',
+                    'Resource actions are indicated with the following symbols:',
+                    '  + create',
+                    '',
+                    'Terraform will perform the following actions:',
+                    '',
+                    '  + aws_instance.web',
+                    '  + aws_s3_bucket.data',
+                    '  + module.vpc.aws_vpc.this[0]',
+                    '',
+                    'Plan: 3 to add, 0 to change, 0 to destroy.'
+                ],
+                delay: 2500
+            },
+            {
+                type: 'command',
+                prompt: 'clouddev@server:~$',
+                text: 'terraform apply -auto-approve',
+                delay: 2000,
+                highlightClass: 'terraform-highlight'
+            },
+            {
+                type: 'progress',
+                delay: 1000,
+                duration: 5000
+            },
+            {
+                type: 'output',
+                text: [
+                    'Apply complete! Resources: 3 added, 0 changed, 0 destroyed.',
+                    '',
+                    'Outputs:',
+                    '',
+                    'instance_ip = "203.0.113.10"',
+                    'vpc_id = "vpc-0a1b2c3d4e5f6g7h8"'
+                ],
+                delay: 1000,
+                class: 'output-success'
+            },
+            {
+                type: 'command',
+                prompt: 'clouddev@server:~$',
+                text: 'aws ec2 describe-instances --filters "Name=tag:Name,Values=WebServer" --query "Reservations[*].Instances[*].InstanceId" --output text',
+                delay: 2000,
+                highlightClass: 'aws-highlight'
+            },
+            {
+                type: 'output',
+                text: [
+                    'i-0abc123def456789'
+                ],
+                delay: 1000,
+            },
+            {
+                type: 'command',
+                prompt: 'clouddev@server:~$',
+                text: 'ansible-playbook -i inventory.yml deploy.yml',
+                delay: 2000,
+                highlightClass: 'ansible-highlight'
+            },
+            {
+                type: 'progress',
+                delay: 1000,
+                duration: 4000
+            },
+            {
+                type: 'output',
+                text: [
+                    'PLAY [Deploy application] ************************************************',
+                    '',
+                    'TASK [Gathering Facts] **************************************************',
+                    'ok: [web-server]',
+                    '',
+                    'TASK [Install dependencies] *********************************************',
+                    'ok: [web-server]',
+                    '',
+                    'TASK [Deploy application] ***********************************************',
+                    'changed: [web-server]',
+                    '',
+                    'PLAY RECAP **************************************************************',
+                    'web-server : ok=3 changed=1 unreachable=0 failed=0'
+                ],
+                delay: 1000,
+                class: 'output-success'
+            },
+            {
+                type: 'command',
+                prompt: 'clouddev@server:~$',
+                text: 'docker-compose up -d',
+                delay: 2000,
+                highlightClass: 'docker-highlight'
+            },
+            {
+                type: 'output',
+                text: [
+                    'Creating network "app_default" with the default driver',
+                    'Creating app_database_1 ... done',
+                    'Creating app_cache_1    ... done',
+                    'Creating app_backend_1  ... done',
+                    'Creating app_frontend_1 ... done'
+                ],
+                delay: 1500
+            },
+            {
+                type: 'command',
+                prompt: 'clouddev@server:~$',
+                text: 'python3 monitoring.py --check-health',
+                delay: 1500,
+                highlightClass: 'python-highlight'
+            },
+            {
+                type: 'output',
+                text: [
+                    '✓ Verificando saúde dos serviços',
+                    '✓ Frontend: Respondendo em http://localhost:3000',
+                    '✓ Backend: APIs operacionais',
+                    '✓ Banco de dados: Conectado',
+                    '✓ Cache: Operacional',
+                    '',
+                    'Todos os serviços estão saudáveis! Aplicação pronta para uso.'
+                ],
+                delay: 800,
+                class: 'output-success'
+            },
+            {
+                type: 'active',
+                prompt: 'clouddev@server:~$',
+                delay: 1000
+            }
+        ];
+        
+        // Processo de animação do terminal
+        let currentIndex = 0;
+        
+        function processNext() {
+            if (currentIndex >= terminalSequence.length) return;
+            
+            const current = terminalSequence[currentIndex];
+            
+            setTimeout(() => {
+                if (current.type === 'command') {
+                    const commandLine = document.createElement('div');
+                    commandLine.className = 'command-line';
+                    
+                    const prompt = document.createElement('span');
+                    prompt.className = 'command-prompt';
+                    prompt.textContent = current.prompt;
+                    
+                    const cmd = document.createElement('span');
+                    cmd.className = 'command-text';
+                    
+                    // Separar o comando para destacar palavras-chave
+                    const parts = current.text.split(' ');
+                    parts.forEach((part, idx) => {
+                        const span = document.createElement('span');
+                        if (idx === 0 && current.highlightClass) {
+                            span.className = current.highlightClass;
+                        } else if (idx === 0 || part.startsWith('-')) {
+                            span.className = 'command-highlighted';
+                        }
+                        span.textContent = part + (idx < parts.length - 1 ? ' ' : '');
+                        cmd.appendChild(span);
+                    });
+                    
+                    commandLine.appendChild(prompt);
+                    commandLine.appendChild(cmd);
+                    
+                    terminalContent.appendChild(commandLine);
+                    
+                    setTimeout(() => {
+                        commandLine.style.opacity = '1';
+                        commandLine.style.transform = 'translateY(0)';
+                        
+                        // Rolar para baixo
+                        terminalContent.scrollTop = terminalContent.scrollHeight;
+                        
+                        currentIndex++;
+                        processNext();
+                    }, 100);
+                } 
+                else if (current.type === 'output') {
+                    const outputContainer = document.createElement('div');
+                    outputContainer.className = 'command-output';
+                    
+                    current.text.forEach(line => {
+                        const outputLine = document.createElement('div');
+                        outputLine.className = 'command-output-line';
+                        if (current.class) {
+                            outputLine.classList.add(current.class);
+                        }
+                        outputLine.textContent = line;
+                        outputContainer.appendChild(outputLine);
+                    });
+                    
+                    terminalContent.appendChild(outputContainer);
+                    
+                    setTimeout(() => {
+                        outputContainer.style.opacity = '1';
+                        outputContainer.style.transform = 'translateY(0)';
+                        
+                        // Rolar para baixo
+                        terminalContent.scrollTop = terminalContent.scrollHeight;
+                        
+                        currentIndex++;
+                        processNext();
+                    }, 100);
+                }
+                else if (current.type === 'progress') {
+                    const progressContainer = document.createElement('div');
+                    progressContainer.className = 'progress-container';
+                    
+                    const progressBar = document.createElement('div');
+                    progressBar.className = 'progress-bar';
+                    progressContainer.appendChild(progressBar);
+                    
+                    terminalContent.appendChild(progressContainer);
+                    
+                    setTimeout(() => {
+                        progressContainer.style.opacity = '1';
+                        progressContainer.style.transform = 'translateY(0)';
+                        
+                        // Animar a barra de progresso
+                        setTimeout(() => {
+                            progressBar.style.width = '100%';
+                            
+                            setTimeout(() => {
+                                currentIndex++;
+                                processNext();
+                            }, current.duration);
+                        }, 500);
+                        
+                        // Rolar para baixo
+                        terminalContent.scrollTop = terminalContent.scrollHeight;
+                    }, 100);
+                }
+                else if (current.type === 'active') {
+                    const activeLine = document.createElement('div');
+                    activeLine.className = 'active-line';
+                    
+                    const prompt = document.createElement('span');
+                    prompt.className = 'active-prompt';
+                    prompt.textContent = current.prompt;
+                    
+                    const cursor = document.createElement('span');
+                    cursor.className = 'active-cursor';
+                    
+                    activeLine.appendChild(prompt);
+                    activeLine.appendChild(cursor);
+                    
+                    terminalContent.appendChild(activeLine);
+                    
+                    setTimeout(() => {
+                        activeLine.style.opacity = '1';
+                        activeLine.style.transform = 'translateY(0)';
+                        
+                        // Rolar para baixo
+                        terminalContent.scrollTop = terminalContent.scrollHeight;
+                        
+                        currentIndex++;
+                        processNext();
+                    }, 100);
+                }
+            }, current.delay);
+        }
+        
+        // Iniciar a sequência do terminal
+        processNext();
+    }
+    
+    // Iniciar animações do banner principal
+    function initBannerAnimations() {
+        // Animar ícones cloud
+        const cloudIcons = document.querySelectorAll('.cloud-icon');
+        cloudIcons.forEach((icon, index) => {
+            setTimeout(() => {
+                icon.style.opacity = '1';
+                icon.style.transform = 'translateY(0) translateZ(0)';
+            }, 300 + (index * 150));
+        });
+        
+        // Animar texto de typing
+        setTimeout(() => {
+            document.querySelectorAll('.hero h1 span').forEach(span => {
+                span.classList.add('animate');
+            });
+        }, 1500);
+        
+        // Configurar o terminal interativo
+        setupTerminal();
+    }
+    
+    // Animar barras de progresso de habilidades
+    function animateSkills() {
+        const skillBars = document.querySelectorAll('.skill-progress');
+        
+        function checkScroll() {
+            const triggerBottom = window.innerHeight * 0.85;
+            
+            skillBars.forEach(bar => {
+                const barTop = bar.getBoundingClientRect().top;
+                
+                if (barTop < triggerBottom) {
+                    const progress = bar.getAttribute('data-progress');
+                    bar.style.width = `${progress}%`;
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        checkScroll(); // Verificar também no carregamento inicial
+    }
+    
+   // Substitua a função setupProjectFilter() existente por esta versão melhorada:
+function setupProjectFilter() {
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remover classe active de todos os botões
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Adicionar classe active ao botão clicado
+            button.classList.add('active');
+            
+            // Obter categoria do botão
+            const filterValue = button.getAttribute('data-filter');
+            
+            // Filtrar projetos com animação suave
+            projectCards.forEach(card => {
+                if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                    // Mostrar cards que correspondem ao filtro
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    // Esconder cards que não correspondem ao filtro
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300); // Tempo da transição para desaparecer
+                }
+            });
+        });
+    });
+}
+    
+    // Configurar cursor personalizado
+    function setupCustomCursor() {
+        const cursor = document.querySelector('.custom-cursor');
+        if (!cursor) return;
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        
+        const hoverElements = document.querySelectorAll('a, button, .cloud-icon, .btn, .terminal-tab, .terminal-button, .filter-button, .form-control');
+        
+        hoverElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+    }
+    
+    // Configurar interação das abas do terminal
+    function setupTerminalTabs() {
+        const tabs = document.querySelectorAll('.terminal-tab');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remover classe ativa de todas as abas
+                tabs.forEach(t => t.classList.remove('active'));
+                
+                // Adicionar classe ativa à aba clicada
+                tab.classList.add('active');
+            });
+        });
+    }
+    
+    // Configurar menu mobile
+    function setupMobileMenu() {
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+                // Mudar ícone do botão
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navLinks.classList.contains('show')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Fechar menu ao clicar em um link
+            const menuLinks = document.querySelectorAll('.nav-links a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('show');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            });
+        }
+    }
+    
+    // Animação de rolagem suave
+    function setupSmoothScroll() {
+        const scrollLinks = document.querySelectorAll('a[href^="#"]');
+        
+        scrollLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Adicionar offset para o header fixo
+                    const offset = 80;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+    
+    // Adicionar efeito de partículas no fundo
+    function createParticles() {
+        const transitionSections = document.querySelectorAll('.section-transition');
+        
+        transitionSections.forEach(section => {
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'transition-particle';
+                
+                // Posição aleatória
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Tamanho aleatório
+                const size = Math.random() * 3 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Velocidade aleatória
+                const duration = Math.random() * 10 + 10;
+                particle.style.animation = `floatParticle ${duration}s linear infinite`;
+                
+                // Atraso aleatório
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                
+                section.appendChild(particle);
+            }
+        });
+    }
+    
+    // Animar itens ao rolar a página
+    function setupScrollAnimations() {
+        const animatedElements = document.querySelectorAll('.skill-category, .certification-card, .project-card, .timeline-content');
+        
+        function checkScroll() {
+            const triggerBottom = window.innerHeight * 0.85;
+            
+            animatedElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < triggerBottom) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        checkScroll(); // Verificar também no carregamento inicial
+    }
+    
+    // Validação do formulário de contato
+    function setupFormValidation() {
+        const contactForm = document.getElementById('contactForm');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Obter valores dos campos
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Validação simples
+                if (!name || !email || !subject || !message) {
+                    alert('Por favor, preencha todos os campos.');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    alert('Por favor, insira um email válido.');
+                    return;
+                }
+                
+                // Simulação de envio bem-sucedido
+                const submitBtn = contactForm.querySelector('.form-submit');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+                
+                setTimeout(() => {
+                    alert('Mensagem enviada com sucesso! Entrarei em contato o mais breve possível.');
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar Mensagem';
+                }, 1500);
+            });
+        }
+        
+        function isValidEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+    }
+    
+    // Adicionar efeito de destaque nas seções de navegação
+    function setupNavHighlight() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        function highlightNav() {
+            const scrollPos = window.pageYOffset + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', highlightNav);
+        highlightNav(); // Verificar também no carregamento inicial
+    }
+    
+    // Inicializar tudo quando o DOM estiver pronto
+    document.addEventListener('DOMContentLoaded', function() {
+        setupCodeLayer();
+        setupHeroGrid();
+        animateInfraElements();
+        animateLoaderText();
+        updateLoaderProgress();
+        setupCustomCursor();
+        setupMobileMenu();
+        setupTerminalTabs();
+        setupSmoothScroll();
+        setupProjectFilter();
+        animateSkills();
+        createParticles();
+        setupScrollAnimations();
+        setupFormValidation();
+        setupNavHighlight();
+        
+        // Adicionar classe CSS para estilos adicionais após o carregamento
+        document.body.classList.add('loaded');
+    });
+</script>
